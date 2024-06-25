@@ -1,0 +1,167 @@
+openapi: 3.0.1
+info:
+  title: Mobility-On-Demand API
+  description: API for managing users, demands, and cars in a mobility-on-demand service.
+  version: 1.0.0
+servers:
+  - url: /api
+paths:
+  /users:
+    get:
+      summary: Get all users
+      operationId: getUsers
+      responses:
+        '200':
+          description: A list of users
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      operationId: createUser
+      requestBody:
+        description: User object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '201':
+          description: User created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /demands:
+    get:
+      summary: Get all demands
+      operationId: getDemands
+      responses:
+        '200':
+          description: A list of demands
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Demand'
+    post:
+      summary: Create a new demand
+      operationId: createDemand
+      requestBody:
+        description: Demand object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Demand'
+      responses:
+        '201':
+          description: Demand created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Demand'
+
+  /cars:
+    get:
+      summary: Get all cars
+      operationId: getCars
+      responses:
+        '200':
+          description: A list of cars
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Car'
+    post:
+      summary: Create a new car
+      operationId: createCar
+      requestBody:
+        description: Car object that needs to be added
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '201':
+          description: Car created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        name:
+          type: string
+          example: John Doe
+        address:
+          type: string
+          example: 123 Main St
+        age:
+          type: integer
+          example: 30
+        demands:
+          type: array
+          items:
+            $ref: '#/components/schemas/Demand'
+    Demand:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        user_id:
+          type: integer
+          example: 1
+        pickupLocation:
+          type: string
+          example: Location A
+        dropoffLocation:
+          type: string
+          example: Location B
+        time:
+          type: string
+          format: date-time
+          example: 2023-06-30T10:00:00Z
+        passengers:
+          type: integer
+          example: 2
+    Car:
+      type: object
+      properties:
+        id:
+          type: integer
+          example: 1
+        engineType:
+          type: string
+          example: Electric
+        availableSeats:
+          type: integer
+          example: 4
+        locationType:
+          type: string
+          example: Point
+        locationCoordinates:
+          type: array
+          items:
+            type: number
+          example: [40.7128, -74.0060]
+        status:
+          type: string
+          example: available
