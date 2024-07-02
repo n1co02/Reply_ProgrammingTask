@@ -9,6 +9,7 @@ export interface CreateCarInput {
 }
 export interface CreateDemandInput {
   user_id: number;
+  car_id: number;
   pickupLocation: string;
   dropoffLocation: string;
   time: Date;

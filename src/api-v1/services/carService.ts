@@ -22,6 +22,10 @@ const carService = {
     });
     return car;
   },
+  deleteCar: async (id: number): Promise<PrismaCar | null> => {
+    const car = await prisma.car.delete({where: {id}});
+    return car;
+  },
 };
 
 export default carService;

@@ -148,6 +148,28 @@ paths:
                   message:
                     type: string
                     example: 'Car not found'
+    delete:
+      summary: Delete a car
+      operationId: deleteCar
+      parameters:
+        - name: carId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Car deleted
+        '404':
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Car not found'
 
 components:
   schemas:
@@ -178,6 +200,9 @@ components:
           example: 1
         user_id:
           type: integer
+          example: 1
+        car_id:
+          type: Interger
           example: 1
         pickupLocation:
           type: string

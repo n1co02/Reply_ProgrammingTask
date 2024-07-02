@@ -18,6 +18,7 @@ model User {
 model Demand {
   id             Int     @id @default(autoincrement())
   user_id        Int
+  car_id         Int
   user           User    @relation(fields: [user_id], references: [id])
   pickupLocation String
   dropoffLocation String

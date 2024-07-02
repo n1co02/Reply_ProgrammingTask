@@ -39,7 +39,11 @@ export const PUT: Operation = async (req, res) => {
 
   return car ? res.status(200).json(car) : res.status(404).json({error: 'Car not found'});
 };
-
+export const DELETE: Operation = async (req, res) => {
+  const id = Number(req.params.id);
+  const car = await carService.deleteCar(id);
+  return car ? res.status(200).json(car) : res.status(404).json({error: 'Car not found'});
+};
 GET.apiDoc = {
   summary: 'Get all cars',
   operationId: 'getCars',
@@ -135,6 +139,35 @@ PUT.apiDoc = {
   responses: {
     '200': {
       description: 'Car updated',
+      content: {
+        'application/json': {
+          schema: {
+            $ref: '#/components/schemas/Car',
+          },
+        },
+      },
+    },
+    '404': {
+      description: 'Car not found',
+    },
+  },
+};
+DELETE.apiDoc = {
+  summary: 'Delete an existing car',
+  operationId: 'deleteCar',
+  parameters: [
+    {
+      in: 'path',
+      name: 'id',
+      required: true,
+      schema: {
+        type: 'integer',
+      },
+    },
+  ],
+  responses: {
+    '200': {
+      description: 'Car deleted',
       content: {
         'application/json': {
           schema: {

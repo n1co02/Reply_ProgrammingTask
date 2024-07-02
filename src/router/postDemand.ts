@@ -14,6 +14,7 @@ postDemandRouter.post('/', async (req, res) => {
     const demand: CreateDemandInput = {
       user_id,
       pickupLocation,
+      car_id,
       dropoffLocation,
       time: new Date(time),
       passengers,

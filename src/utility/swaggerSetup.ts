@@ -42,4 +42,5 @@ export function setupSwagger(app: Express): void {
   app.get('/api/demands', demandsPath.GET as RequestHandler);
   app.post('/api/demands', demandsPath.POST as RequestHandler);
   app.put('/api/cars/:id', carsPath.PUT as RequestHandler);
+  app.delete('/api/cars/:id', carsPath.DELETE as RequestHandler);
 }

@@ -1,6 +1,8 @@
 import {Operation} from 'express-openapi';
 import demandService from '../services/demandService';
-//for testing api specification
+import {CreateDemandInput} from '../../interfaces/interfaces';
+
+// for testing api specification
 
 export const GET: Operation = async (req, res) => {
   const demands = await demandService.getDemands();
@@ -8,13 +10,17 @@ export const GET: Operation = async (req, res) => {
 };
 
 export const POST: Operation = async (req, res) => {
-  const {user_id, pickupLocation, dropoffLocation, time, passengers} = req.body;
-  const demand = await demandService.createDemand({
+  const {user_id, pickupLocation, dropoffLocation, time, passengers, car_id} = req.body;
+  if (!user_id || !pickupLocation || !dropoffLocation || !time || !passengers || !car_id) {
+    throw new Error('Missing required fields');
+  }
+  const demand: CreateDemandInput = await demandService.createDemand({
     user_id,
     pickupLocation,
     dropoffLocation,
     time: new Date(time),
     passengers,
+    car_id,
   });
   return res.status(201).json(demand);
 };
