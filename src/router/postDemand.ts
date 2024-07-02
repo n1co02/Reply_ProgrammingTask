@@ -5,7 +5,7 @@ import demandService from '../api-v1/services/demandService';
 import {CreateDemandInput} from '../interfaces/interfaces';
 const postDemandRouter: Router = express.Router();
 
-postDemandRouter.get('/', async (req, res) => {
+postDemandRouter.post('/', async (req, res) => {
   const {user_id, pickupLocation, dropoffLocation, time, passengers} = req.body;
   try {
     if (!user_id || !pickupLocation || !dropoffLocation || !time || !passengers)

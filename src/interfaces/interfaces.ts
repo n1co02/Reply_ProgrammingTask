@@ -37,3 +37,8 @@ export interface CreateDemandInput {
   time: Date;
   passengers: number;
 }
+export interface UserInput {
+  name: string;
+  address: string;
+  age: number;
+}

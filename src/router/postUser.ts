@@ -2,18 +2,21 @@ import type {Router, Request, Response} from 'express';
 import express from 'express';
 import ServerError from '../utility/serverError';
 import userService from '../api-v1/services/userService';
+import {UserInput} from '../interfaces/interfaces';
 
 const postUserRouter: Router = express.Router();
 
-postUserRouter.get('/', async (req, res) => {
+postUserRouter.post('/', async (req, res) => {
   const {name, address, age} = req.body;
+  if (!name || !address || !age) return res.status(400).json({error: 'All fields are required'});
   try {
-    const user = await userService.createUser({
+    const user: UserInput = {
       name,
       address,
       age,
-    });
-    return res.json(user);
+    };
+    const createdUser = await userService.createUser(user);
+    return res.json(createdUser);
   } catch (error) {
     throw new ServerError('INTERNAL_SERVER_ERROR', {info: 500});
   }
