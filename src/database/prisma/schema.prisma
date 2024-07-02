@@ -28,7 +28,7 @@ model Demand {
 
 model Car {
   id             Int     @id @default(autoincrement())
-  engineType     String
+  engineType     EngineType
   availableSeats Int
   locationType   String
   locationCoordinates Float[]
@@ -39,4 +39,11 @@ enum CarStatus {
   available
   used
   reserved
+}
+
+enum EngineType {
+  hybrid
+  diesel
+  gasoline
+  electric
 }

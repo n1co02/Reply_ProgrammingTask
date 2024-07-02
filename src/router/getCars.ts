@@ -1,7 +1,7 @@
 import type {Router, Request, Response} from 'express';
 import express from 'express';
 import ServerError from '../utility/serverError';
-import carService from '../api-v1/services/carService';
+import carService from '../api-v1/services/carsService';
 
 const getCarsRouter: Router = express.Router();
 

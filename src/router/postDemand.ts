@@ -6,7 +6,7 @@ import {CreateDemandInput} from '../interfaces/interfaces';
 const postDemandRouter: Router = express.Router();
 
 postDemandRouter.post('/', async (req, res) => {
-  const {user_id, pickupLocation, dropoffLocation, time, passengers} = req.body;
+  const {user_id, pickupLocation, dropoffLocation, time, passengers, car_id} = req.body;
   try {
     if (!user_id || !pickupLocation || !dropoffLocation || !time || !passengers)
       return res.status(400).json({error: 'All fields are required'});

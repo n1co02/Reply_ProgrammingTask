@@ -1,7 +1,7 @@
-import {CarStatus} from './enums';
+import {CarStatus, EngineType} from './enums';
 
 export interface CreateCarInput {
-  engineType: string;
+  engineType: EngineType;
   availableSeats: number;
   locationType: string;
   locationCoordinates: number[];

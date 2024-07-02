@@ -81,6 +81,7 @@ paths:
                 type: array
                 items:
                   $ref: '#/components/schemas/Car'
+  /car:
     post:
       summary: Create a new car
       operationId: createCar
@@ -98,7 +99,8 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Car'
-  /cars/{carId}:
+
+  /car/{carId}:
     get:
       summary: Get one specific car
       operationId: getCar
@@ -202,7 +204,7 @@ components:
           type: integer
           example: 1
         car_id:
-          type: Interger
+          type: integer
           example: 1
         pickupLocation:
           type: string
