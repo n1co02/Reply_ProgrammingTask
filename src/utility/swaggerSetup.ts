@@ -28,8 +28,11 @@ export function setupSwagger(app: Express): void {
     paths: path.join(__dirname, '../api-v1/paths'),
     docsPath: '/api-docs',
   });
-
   app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(v1ApiDoc));
+  app.get('/api-docs.json', (req, res) => {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify(v1ApiDoc));
+  });
 
   app.post('/api/cars', carsPath.POST as RequestHandler);
   app.get('/api/cars', carsPath.GET as RequestHandler);
