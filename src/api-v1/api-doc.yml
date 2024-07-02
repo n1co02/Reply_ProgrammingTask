@@ -98,6 +98,56 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Car'
+  /cars/{carId}:
+    get:
+      summary: Get one specific car
+      operationId: getCar
+      parameters:
+        - name: carId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: A specific car
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+    put:
+      summary: Update a car
+      operationId: updateCar
+      parameters:
+        - name: carId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        description: Car object that needs to be updated
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Car'
+      responses:
+        '200':
+          description: Car updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Car'
+        '404':
+          description: Car not found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                    example: 'Car not found'
 
 components:
   schemas:

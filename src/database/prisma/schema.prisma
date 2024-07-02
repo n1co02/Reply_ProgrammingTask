@@ -4,7 +4,7 @@ generator client {
 
 datasource db {
   provider = "postgresql"
-  url      = env(DATABASE_URL)
+  url      = "postgres://default:qgw0IiJKPTA8@ep-quiet-butterfly-a48qk7f2-pooler.us-east-1.aws.neon.tech:5432/verceldb?sslmode=require&pgbouncer=true&connect_timeout=15"
 }
 
 model User {
@@ -31,5 +31,11 @@ model Car {
   availableSeats Int
   locationType   String
   locationCoordinates Float[]
-  status         String
+  status         CarStatus 
+}
+
+enum CarStatus {
+  available
+  used
+  reserved
 }

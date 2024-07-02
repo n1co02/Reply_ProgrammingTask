@@ -1,12 +1,12 @@
-import {PrismaClient} from '@prisma/client';
-import {CreateDemandInput, Demand} from '../../interfaces/interfaces';
+import {PrismaClient, Demand as PrismaDemand} from '@prisma/client';
+import {CreateDemandInput} from '../../interfaces/interfaces';
 const prisma = new PrismaClient();
 
 const demandService = {
-  getDemands: async (): Promise<Demand[]> => {
+  getDemands: async (): Promise<PrismaDemand[]> => {
     return prisma.demand.findMany();
   },
-  createDemand: async (data: CreateDemandInput): Promise<Demand> => {
+  createDemand: async (data: CreateDemandInput): Promise<PrismaDemand> => {
     return prisma.demand.create({data});
   },
 };

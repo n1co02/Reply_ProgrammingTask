@@ -36,8 +36,10 @@ export function setupSwagger(app: Express): void {
 
   app.post('/api/cars', carsPath.POST as RequestHandler);
   app.get('/api/cars', carsPath.GET as RequestHandler);
+  app.get('/api/cars/:id', carsPath.GET_CAR as RequestHandler);
   app.post('/api/users', usersPath.POST as RequestHandler);
   app.get('/api/users', usersPath.GET as RequestHandler);
   app.get('/api/demands', demandsPath.GET as RequestHandler);
   app.post('/api/demands', demandsPath.POST as RequestHandler);
+  app.put('/api/cars/:id', carsPath.PUT as RequestHandler);
 }
