@@ -3,7 +3,7 @@ export interface User {
   name: string;
   address: string;
   age: number;
-  demands: Demand[];
+  demands?: Demand[];
 }
 
 export interface Demand {
