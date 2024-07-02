@@ -20,6 +20,8 @@ export const processScooters = (): Data => {
       user.current_scooter = availableScooters[index].id;
       availableScooters[index].assigned = true;
       availableScooters[index].assigned_user = user.id;
+    } else {
+      return;
     }
   });
   console.log(
