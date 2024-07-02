@@ -3,7 +3,7 @@ import carService from '../services/carService';
 //for testing api specification
 export const GET: Operation = async (req, res) => {
   const cars = await carService.getCars();
-  res.status(200).json(cars);
+  return res.status(200).json(cars);
 };
 
 export const POST: Operation = async (req, res) => {
@@ -15,7 +15,7 @@ export const POST: Operation = async (req, res) => {
     locationCoordinates,
     status,
   });
-  res.status(201).json(car);
+  return res.status(201).json(car);
 };
 
 GET.apiDoc = {

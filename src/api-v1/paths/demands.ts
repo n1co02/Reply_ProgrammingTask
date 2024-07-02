@@ -4,7 +4,7 @@ import demandService from '../services/demandService';
 
 export const GET: Operation = async (req, res) => {
   const demands = await demandService.getDemands();
-  res.status(200).json(demands);
+  return res.status(200).json(demands);
 };
 
 export const POST: Operation = async (req, res) => {
@@ -16,7 +16,7 @@ export const POST: Operation = async (req, res) => {
     time: new Date(time),
     passengers,
   });
-  res.status(201).json(demand);
+  return res.status(201).json(demand);
 };
 
 GET.apiDoc = {

@@ -4,7 +4,7 @@ import userService from '../services/userService';
 
 export const GET: Operation = async (req, res) => {
   const users = await userService.getUsers();
-  res.status(200).json(users);
+  return res.status(200).json(users);
 };
 
 export const POST: Operation = async (req, res) => {
@@ -14,7 +14,7 @@ export const POST: Operation = async (req, res) => {
     address,
     age,
   });
-  res.status(201).json(user);
+  return res.status(201).json(user);
 };
 
 GET.apiDoc = {
